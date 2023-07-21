@@ -84,7 +84,7 @@ if DEBUG == False:
 
     DATABASES = {
     "default": {
-        "ENGINE": "django_tenants.postgresql_backend",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": os.environ["DB_NAME"],
         "USER": os.environ["POSTGRES_USER"],
         "PASSWORD": os.environ["POSTGRES_PASSWORD"],
