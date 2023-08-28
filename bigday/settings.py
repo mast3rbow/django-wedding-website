@@ -11,14 +11,15 @@ except:
     DEBUG = True
 
 
-if DEBUG == False:
+if DEBUG == True:
     SECRET_KEY = os.environ['SECRET_KEY']
 else:
     SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
 
-ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["bcwedding.azurewebsites.net"]
-
+if DEBUG == True:
+    ALLOWED_HOSTS = os.environ['HOST']
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -68,7 +69,7 @@ WSGI_APPLICATION = 'bigday.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-if DEBUG == False:
+if DEBUG == True:
 
     DATABASES = {
     "default": {
@@ -159,8 +160,3 @@ WEDDING_CC_LIST = []  # put email addresses here if you want to cc someone on al
 
 # change to a real email backend in production
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-try:
-    from .localsettings import *
-except ImportError:
-    pass
