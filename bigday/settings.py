@@ -5,21 +5,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
-    os.environ['DEBUG'] == 'False'
-    DEBUG = False
+    os.environ['DEBUG']
 except:
     DEBUG = True
 
 
-if DEBUG == True:
+
+if DEBUG == False:
     SECRET_KEY = os.environ['SECRET_KEY']
 else:
     SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
 
-if DEBUG == True:
+if DEBUG == False:
     ALLOWED_HOSTS = os.environ['HOST']
 else:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'bigday.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-if DEBUG == True:
+if DEBUG == False:
 
     DATABASES = {
     "default": {
@@ -144,7 +144,7 @@ STATICFILES_DIRS = (
 # This is used in a few places where the names of the couple are used
 BRIDE_AND_GROOM = 'Bryton and Chloe'
 # base address for all emails
-DEFAULT_WEDDING_EMAIL = 'happilyeverafter@example.com'
+DEFAULT_WEDDING_EMAIL = 'bryton.wishart@outlook.com'
 # the address your emails (save the dates/invites/etc.) will come from
 DEFAULT_WEDDING_FROM_EMAIL = BRIDE_AND_GROOM + ' <' + DEFAULT_WEDDING_EMAIL + '>' # change to 'address@domain.tld'
 # the default reply-to of your emails
