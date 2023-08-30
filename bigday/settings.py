@@ -5,7 +5,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
-    DEBUG = os.environ['DEBUG']
+    debug = os.environ['DEBUG']
+    if debug == 'False':
+        DEBUG = False
 except:
     DEBUG = True
 
@@ -16,6 +18,7 @@ else:
 
 if DEBUG == False:
     ALLOWED_HOSTS = os.environ['HOST']
+    CSRF_TRUSTED_ORIGINS = ['https://*.wishuz.com']
 else:
     ALLOWED_HOSTS = ["*"]
 
