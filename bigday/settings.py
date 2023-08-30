@@ -10,6 +10,8 @@ except:
     print("Error Getting debug variable")
     debug_variable = '0'
 
+DEBUG = None
+
 if debug_variable == '1':
     DEBUG = True
     SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
