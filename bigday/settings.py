@@ -17,7 +17,7 @@ if debug_variable == '1':
 else:
     DEBUG = False
     SECRET_KEY = os.environ['SECRET_KEY']
-    ALLOWED_HOSTS = ['https://wedding.wishuz.com','bcwedding.azurewebsites.net']
+    ALLOWED_HOSTS = ['wedding.wishuz.com','bcwedding.azurewebsites.net']
     CSRF_TRUSTED_ORIGINS = ['https://*.wishuz.com']
 
 # Application definition
