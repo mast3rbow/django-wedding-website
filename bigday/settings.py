@@ -8,6 +8,7 @@ try:
     debug_variable = os.environ['DEBUG']
 except:
     print("Error Getting debug variable")
+    debug_variable = '0'
 
 if debug_variable == '1':
     DEBUG = True
