@@ -6,10 +6,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
     debug = os.environ['DEBUG']
-    if debug == 'False':
-        DEBUG = False
 except:
+    print("Error Getting debug variable")
+
+print(debug)
+if debug == 1:
     DEBUG = True
+else:
+    DEBUG = False
 
 if DEBUG == False:
     SECRET_KEY = os.environ['SECRET_KEY']
