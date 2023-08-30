@@ -5,7 +5,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-if os.environ["DEBUG"] == "true":
+try: 
+    debug_varialbe = os.environ["DEBUG"]
+except:
+    debug_varialbe = "true"
+
+if debug_varialbe == "true":
     DEBUG = True
     SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
     ALLOWED_HOSTS = ["*"]
