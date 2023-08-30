@@ -21,7 +21,7 @@ else:
     SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
 
 if DEBUG == False:
-    ALLOWED_HOSTS = os.getenv("HOST").split(' ')
+    ALLOWED_HOSTS = [os.getenv("HOST").split(' ')]
     CSRF_TRUSTED_ORIGINS = ['https://*.wishuz.com']
 else:
     ALLOWED_HOSTS = ["*"]
