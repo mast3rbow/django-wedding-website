@@ -4,23 +4,17 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-try:
-    debug_variable = os.environ['DEBUG']
-except:
-    print("Error Getting debug variable")
-    debug_variable = '0'
 
-DEBUG = None
-
-if debug_variable == '1':
+if os.environ["DEBUG"] == "true":
     DEBUG = True
     SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
     ALLOWED_HOSTS = ["*"]
 else:
     DEBUG = False
     SECRET_KEY = os.environ['SECRET_KEY']
-    ALLOWED_HOSTS = ["wedding.wishuz.com"]
-    CSRF_TRUSTED_ORIGINS = ["https://*.wishuz.com"]
+    ALLOWED_HOSTS = [os.environ.get("HOST", "localhost")]
+
+CSRF_TRUSTED_ORIGINS = ["https://*.wishuz.com",]
 
 # Application definition
 
