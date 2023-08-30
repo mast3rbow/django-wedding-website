@@ -12,7 +12,7 @@ if os.environ["DEBUG"] == "true":
 else:
     DEBUG = False
     SECRET_KEY = os.environ['SECRET_KEY']
-    ALLOWED_HOSTS = [os.environ.get("HOST", "localhost")]
+    ALLOWED_HOSTS = ['wedding.wishuz.com','www.wedding.wishuz.com','bcwedding.azurewebsites.net']
 
 CSRF_TRUSTED_ORIGINS = ["https://*.wishuz.com",]
 
