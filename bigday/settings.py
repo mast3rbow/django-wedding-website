@@ -9,8 +9,6 @@ try:
 except:
     DEBUG = True
 
-
-
 if DEBUG == False:
     SECRET_KEY = os.environ['SECRET_KEY']
 else:
