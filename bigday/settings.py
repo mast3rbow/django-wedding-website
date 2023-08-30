@@ -5,26 +5,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
-    debug = os.environ['DEBUG']
+    debug_variable = os.environ['DEBUG']
 except:
     print("Error Getting debug variable")
 
-print(debug)
-if debug == 1:
+if debug_variable == '1':
     DEBUG = True
+    SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
+    ALLOWED_HOSTS = ["*"]
 else:
     DEBUG = False
-
-if DEBUG == False:
     SECRET_KEY = os.environ['SECRET_KEY']
-else:
-    SECRET_KEY = 'u7!-y4k1c6b44q507nr_l+c^12o7ur++cpzyn!$65w^!gum@h%'
-
-if DEBUG == False:
     ALLOWED_HOSTS = ['https://wedding.wishuz.com','bcwedding.azurewebsites.net']
     CSRF_TRUSTED_ORIGINS = ['https://*.wishuz.com']
-else:
-    ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -89,9 +82,9 @@ if DEBUG == False:
         "OPTIONS": {
             "sslmode": "require",
         },
+        }
     }
-}
-    
+       
 else:
 
     DATABASES = {
