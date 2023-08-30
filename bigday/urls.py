@@ -7,5 +7,5 @@ urlpatterns = [
     path("", include('wedding.urls')),
     path("", include('guests.urls')),
     path("admin/", admin.site.urls),
-    path("^accounts/", include('django.contrib.auth.urls'))
+    path("accounts/", include('django.contrib.auth.urls'))
 ]

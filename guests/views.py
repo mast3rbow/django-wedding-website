@@ -19,6 +19,7 @@ from guests.save_the_date import get_save_the_date_context, send_save_the_date_e
 
 class GuestListView(ListView):
     model = Guest
+    template_name = 'guests/partials/guest_list.html'
 
 
 @login_required
