@@ -185,32 +185,6 @@ LOGGING = {
             "format": "%(asctime)s |  %(name)s | %(levelname)s | [%(funcName)s:%(filename)s:%(lineno)d] |"
                       " [%(threadName)s:%(process)d] | %(message)s"
                       "traceID=%(traceId)s spanId=%(spanId)s"
-        },
-
+        }
     },
-    "handlers": {
-        "stdout": {
-            "level": "DEBUG",
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
-        "log_to_file": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "formatter": "verbose",
-            "filename": os.path.join(BASE_DIR, "logs", "dev.logs") # same loc as blogproject
-        },
-         "log_to_azure_ai": {
-            "level": "DEBUG",
-            "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
-            "connection_string": "09d6abad-528a-4378-a562-3b1d3b8a9d50",
-            "formatter": "verbose",
-        },
-
-    },
-    "loggers": {
-        'django': {
-            'handlers': ['stdout', 'log_to_file','log_to_azure_ai'],
-        },
-    }
 }
