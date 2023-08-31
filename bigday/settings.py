@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'opencensus.ext.django.middleware.OpencensusMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -160,3 +161,56 @@ WEDDING_CC_LIST = []  # put email addresses here if you want to cc someone on al
 
 # change to a real email backend in production
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+OPENCENSUS = {
+    'TRACE': {
+        'SAMPLER': 'opencensus.trace.samplers.ProbabilitySampler(rate=1)',
+        'EXPORTER': '''opencensus.ext.azure.trace_exporter.AzureExporter(
+            connection_string="InstrumentationKey=09d6abad-528a-4378-a562-3b1d3b8a9d50"
+        )''',
+    }
+}
+
+from opencensus.trace import config_integration
+config_integration.trace_integrations(['requests','logging','postgresql'])
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s | %(levelname)s | %(message)s"
+        },
+        "azure_verbose": {
+            "format": "%(asctime)s |  %(name)s | %(levelname)s | [%(funcName)s:%(filename)s:%(lineno)d] |"
+                      " [%(threadName)s:%(process)d] | %(message)s"
+                      "traceID=%(traceId)s spanId=%(spanId)s"
+        },
+
+    },
+    "handlers": {
+        "stdout": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+        "log_to_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "verbose",
+            "filename": os.path.join(BASE_DIR, "logs", "dev.logs") # same loc as blogproject
+        },
+         "log_to_azure_ai": {
+            "level": "DEBUG",
+            "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
+            "connection_string": os.environ.get("09d6abad-528a-4378-a562-3b1d3b8a9d50"),
+            "formatter": "verbose",
+        },
+
+    },
+    "loggers": {
+        'django': {
+            'handlers': ['stdout', 'log_to_file','log_to_azure_ai'],
+        },
+    }
+}
