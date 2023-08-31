@@ -1,4 +1,5 @@
 import os
+from opencensus.trace import config_integration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -171,7 +172,6 @@ OPENCENSUS = {
     }
 }
 
-from opencensus.trace import config_integration
 config_integration.trace_integrations(['requests','logging','postgresql'])
 
 LOGGING = {
@@ -203,7 +203,7 @@ LOGGING = {
          "log_to_azure_ai": {
             "level": "DEBUG",
             "class": "opencensus.ext.azure.log_exporter.AzureLogHandler",
-            "connection_string": os.environ.get("09d6abad-528a-4378-a562-3b1d3b8a9d50"),
+            "connection_string": "09d6abad-528a-4378-a562-3b1d3b8a9d50",
             "formatter": "verbose",
         },
 
