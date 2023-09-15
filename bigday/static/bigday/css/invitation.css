@@ -4,6 +4,12 @@
     padding-top: 60px; overflow: hidden;
 }
 
+.img-brand{
+    height:100%;
+    width:30%;
+    display: block;
+    object-fit:contain;
+}
 
 .responsive-video iframe,
 .responsive-video object,
@@ -36,7 +42,6 @@
 
 
 body {
-    background: url('../images/invite-background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
