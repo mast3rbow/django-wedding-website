@@ -131,6 +131,12 @@ def invitation_email_test(request, invite_id):
     send_invitation_email(party, recipients=[settings.DEFAULT_WEDDING_TEST_EMAIL])
     return HttpResponse('sent!')
 
+@login_required
+def invitation_email(request, invite_id):
+    party = guess_party_by_invite_id_or_404(invite_id)
+    send_invitation_email(party)
+    return HttpResponse('sent!')
+
 
 def save_the_date_random(request):
     template_id = random.choice(SAVE_THE_DATE_CONTEXT_MAP.keys())

@@ -18,11 +18,11 @@ def guess_party_by_invite_id_or_404(invitation_id):
 
 def get_invitation_context(party):
     return {
-        'title': "Lion's Head",
+        'title': "Wedding",
         'main_image': 'bride-groom.png',
         'main_color': '#fff3e8',
         'font_color': '#666666',
-        'page_title': "Cory and Rowena - You're Invited!",
+        'page_title': "Bryton and Chloe - You're Invited!",
         'preheader_text': "You are invited!",
         'invitation_id': party.invitation_id,
         'party': party,
@@ -42,10 +42,7 @@ def send_invitation_email(party, test_only=False, recipients=None):
     context['site_url'] = settings.WEDDING_WEBSITE_URL
     context['couple'] = settings.BRIDE_AND_GROOM
     template_html = render_to_string(INVITATION_TEMPLATE, context=context)
-    template_text = "You're invited to {}'s wedding. To view this invitation, visit {} in any browser.".format(
-        settings.BRIDE_AND_GROOM,
-        reverse('invitation', args=[context['invitation_id']])
-    )
+    template_text = f"You're invited to Bryton and Chloe's wedding. To view this invitation, visit {reverse('invitation', args=[context['invitation_id']])} in any browser."
     subject = "You're invited"
     # https://www.vlent.nl/weblog/2014/01/15/sending-emails-with-embedded-images-in-django/
     msg = EmailMultiAlternatives(subject, template_text, settings.DEFAULT_WEDDING_FROM_EMAIL, recipients,
