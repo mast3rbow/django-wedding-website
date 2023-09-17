@@ -155,6 +155,16 @@ WEDDING_DATE = 'January 1st, 1969'
 # when sending test emails it will use this address
 DEFAULT_WEDDING_TEST_EMAIL = DEFAULT_WEDDING_FROM_EMAIL
 
+if DEBUG == False:
+    SENDGRID_API_KEY = os.environ["DB_NAME"]
+else:
+    SENDGRID_API_KEY = ""
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # This is used in links in save the date / invitations
 WEDDING_WEBSITE_URL = 'https://wedding.wishuz.com'

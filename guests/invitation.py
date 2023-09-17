@@ -1,12 +1,13 @@
-from email.mime.image import MIMEImage
 import os
 from datetime import datetime
+from email.mime.image import MIMEImage
+
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-from django.urls import reverse
-from django.http import Http404
+from django.core.mail import EmailMultiAlternatives, send_mail
 from django.template.loader import render_to_string
-from guests.models import Party, MEALS
+from django.urls import reverse
+
+from guests.models import MEALS, Party
 
 INVITATION_TEMPLATE = 'guests/email_templates/invitation.html'
 
