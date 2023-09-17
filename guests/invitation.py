@@ -3,7 +3,7 @@ from datetime import datetime
 from email.mime.image import MIMEImage
 
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives, send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.urls import reverse
 

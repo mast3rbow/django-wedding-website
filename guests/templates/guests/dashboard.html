@@ -2,7 +2,9 @@
 {% block page_content %}
     <div class="container" id="main">
         <h1>Dashboard</h1>
-        <a href="{% url 'send_invites' %}" class="btn btn-primary">Send Invites</a>
+        <br>
+        <a href="{% url 'send_all_invitations_test_emails' %}" class="btn btn-danger">Send All Invites - PRESS ONLY ONCE</a>
+        
         <table class="table table-striped">
             <tr>
                 <td>Guests Attending / Possible</td>

@@ -11,7 +11,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from guests import csv_import
 from guests.invitation import get_invitation_context, INVITATION_TEMPLATE, guess_party_by_invite_id_or_404, \
-    send_invitation_email
+    send_invitation_email, send_all_invitations
 from guests.models import Guest, MEALS, Party
 from guests.save_the_date import get_save_the_date_context, send_save_the_date_email, SAVE_THE_DATE_TEMPLATE, \
     SAVE_THE_DATE_CONTEXT_MAP
@@ -61,6 +61,7 @@ def dashboard(request):
         'total_invites': Party.objects.filter(is_invited=True).count(),
         'meal_breakdown': meal_breakdown,
         'category_breakdown': category_breakdown,
+        'invite_id': Party.objects.all().first().invitation_id
     })
 
 
@@ -135,6 +136,11 @@ def invitation_email_test(request, invite_id):
 def invitation_email(request, invite_id):
     party = guess_party_by_invite_id_or_404(invite_id)
     send_invitation_email(party)
+    return HttpResponse('sent!')
+
+@login_required
+def send_all_invitations_test_emails(request):
+    send_all_invitations(False, False)
     return HttpResponse('sent!')
 
 

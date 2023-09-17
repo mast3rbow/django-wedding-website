@@ -1,7 +1,10 @@
 from django.urls import path
 
-from guests.views import GuestListView, test_email, save_the_date_preview, save_the_date_random, export_guests, \
-    invitation, invitation_email_preview, invitation_email_test, rsvp_confirm, dashboard, invitation_email
+from guests.views import (GuestListView, dashboard, export_guests, invitation,
+                          invitation_email, invitation_email_preview,
+                          invitation_email_test, rsvp_confirm,
+                          save_the_date_preview, save_the_date_random,
+                          send_all_invitations_test_emails, test_email)
 
 urlpatterns = [
     path("guests", GuestListView.as_view(), name='guest-list'),
@@ -14,5 +17,6 @@ urlpatterns = [
     path("save-the-date/", save_the_date_random, name='save-the-date-random'),
     path("save-the-date/<str:template_id>)/", save_the_date_preview, name='save-the-date'),
     path("email-test/(<str:template_id>)/", test_email, name='test-email'),
+    path("send-test-invites", send_all_invitations_test_emails, name='send_all_invitations_test_emails'),
     path("rsvp/confirm/(<str:invite_id>)/", rsvp_confirm, name='rsvp-confirm'),
 ]
