@@ -138,9 +138,10 @@ def invitation_email(request, invite_id):
     send_invitation_email(party)
     return HttpResponse('sent!')
 
+
 @login_required
 def send_all_invitations_test_emails(request):
-    send_all_invitations(False, False)
+    send_all_invitations(False, True)
     return HttpResponse('sent!')
 
 
