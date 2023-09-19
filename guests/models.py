@@ -51,9 +51,9 @@ class Party(models.Model):
 
     @property
     def guest_emails(self):
+        emails = []
         for guest in self.guest_set.all():
-            emails = {}
-            emails += guest.email        
+            emails.append(guest.email)    
         return emails
 
 

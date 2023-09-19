@@ -48,9 +48,9 @@ def dashboard(request):
     meal_breakdown = attending_guests.exclude(meal=None).values('meal').annotate(count=Count('*'))
     category_breakdown = attending_guests.values('party__category').annotate(count=Count('*'))
     
-    emails = {}
+    emails = 
     for party in Party.objects.all():
-        emails += party.guest_emails
+        emails.append(party.guest_emails)
 
     return render(request, 'guests/dashboard.html', context={
         'couple_name': settings.BRIDE_AND_GROOM,
