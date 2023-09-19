@@ -48,7 +48,7 @@ def dashboard(request):
     meal_breakdown = attending_guests.exclude(meal=None).values('meal').annotate(count=Count('*'))
     category_breakdown = attending_guests.values('party__category').annotate(count=Count('*'))
     
-    emails = 
+    emails = []
     for party in Party.objects.all():
         emails.append(party.guest_emails)
 
