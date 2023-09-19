@@ -47,6 +47,11 @@ def dashboard(request):
     )
     meal_breakdown = attending_guests.exclude(meal=None).values('meal').annotate(count=Count('*'))
     category_breakdown = attending_guests.values('party__category').annotate(count=Count('*'))
+    
+    emails = {}
+    for party in Party.objects.all():
+        emails += party.guest_emails
+
     return render(request, 'guests/dashboard.html', context={
         'couple_name': settings.BRIDE_AND_GROOM,
         'guests': Guest.objects.filter(is_attending=True).count(),
@@ -61,7 +66,8 @@ def dashboard(request):
         'total_invites': Party.objects.filter(is_invited=True).count(),
         'meal_breakdown': meal_breakdown,
         'category_breakdown': category_breakdown,
-        'invite_id': Party.objects.all().first().invitation_id
+        'invite_id': Party.objects.all().first().invitation_id,
+        'emailaddresses': emails
     })
 
 
