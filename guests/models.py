@@ -53,7 +53,8 @@ class Party(models.Model):
     def guest_emails(self):
         emails = []
         for guest in self.guest_set.all():
-            emails.append(guest.email)    
+            if guest.email is not None or "":
+                emails.append(guest.email)    
         return emails
 
 

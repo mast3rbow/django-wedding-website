@@ -33,6 +33,7 @@ def get_invitation_context(party):
 def send_invitation_email(party, test_only=False, recipients=None):
     if recipients is None:
         recipients = party.guest_emails
+        print(recipients)
     if not recipients:
         print ('===== WARNING: no valid email addresses found for {} ====='.format(party))
         return
@@ -57,8 +58,9 @@ def send_invitation_email(party, test_only=False, recipients=None):
             msg_img.add_header('Content-ID', '<{}>'.format(filename))
             msg.attach(msg_img)
 
-    print ('sending invitation to {} ({})'.format(party.name, ', '.join(recipients)))
-    if not test_only:
+    print(f"sending invitation to {party.name}")
+    if test_only is True:
+        print("SENDING")
         msg.send()
 
 
