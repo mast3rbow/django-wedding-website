@@ -51,7 +51,10 @@ class Party(models.Model):
 
     @property
     def guest_emails(self):
-        return list(filter(None, self.guest_set.values_list('email', flat=True)))
+        for guest in self.guest_set.all():
+            emails = {}
+            emails += guest.email        
+        return emails
 
 
 MEALS = [
