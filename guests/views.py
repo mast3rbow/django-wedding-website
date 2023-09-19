@@ -140,8 +140,8 @@ def invitation_email(request, invite_id):
 
 
 @login_required
-def send_all_invitations_test_emails(request):
-    send_all_invitations(False, True)
+def send_all_invitations_view(request):
+    send_all_invitations(test_only=False, mark_as_sent=True)
     return HttpResponse('sent!')
 
 

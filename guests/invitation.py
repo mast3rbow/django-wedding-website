@@ -65,7 +65,7 @@ def send_invitation_email(party, test_only=False, recipients=None):
 def send_all_invitations(test_only, mark_as_sent):
     to_send_to = Party.in_default_order().filter(is_invited=True, invitation_sent=None).exclude(is_attending=False)
     for party in to_send_to:
-        send_invitation_email(party, test_only=test_only)
+        send_invitation_email(party, test_only=test_only, recipients=None)
         if mark_as_sent:
             party.invitation_sent = datetime.now()
             party.save()
