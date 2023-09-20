@@ -171,7 +171,7 @@ WEDDING_WEBSITE_URL = 'https://wedding.wishuz.com'
 WEDDING_CC_LIST = []  # put email addresses here if you want to cc someone on all your invitations
 
 # change to a real email backend in production
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 OPENCENSUS = {
     'TRACE': {
