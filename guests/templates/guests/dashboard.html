@@ -2,8 +2,6 @@
 {% block page_content %}
     <div class="container" id="main">
         <h1>Dashboard</h1>
-        <br>
-        <a href="{% url 'send_all_invitations_test_emails' %}" class="btn btn-danger">Send All Invites - PRESS ONLY ONCE</a>
         
         <table class="table table-striped">
             <tr>
@@ -86,8 +84,37 @@
             </div>
         </div>
     <div>
-        {{ emailaddresses }}
+        <table class="table table-condensed">
+            <thead>
+              <tr>
+                <th>Party Name</th>
+                <th>Invite Sent</th>
+                <th>Email</th>
+                <th>Resend Invite</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for party in parties%}
+              <tr>
+                <td>{{party.name}}</td>
+                <td>
+                    {% if party.invitation_sent is not None %}
+                        Yes
+                    {% else%}
+                        No
+                    {% endif %}
+                </td>
+                <td>{{ party.guest_emails }}</td>
+                <td>
+                    <a href={% url 'send_invites' party.invitation_id %} class="btn btn-primary">Resend Invite</a>
+                </td>
+              </tr>
+                {% endfor %}
+            </tbody>
+          </table>
     </div>
-
+    <div>
+        <a href="{% url 'send_all_invitations_test_emails' %}" class="btn btn-danger">Send All Invites - PRESS ONLY ONCE</a>
+    </div>
     </div>
 {% endblock %}
