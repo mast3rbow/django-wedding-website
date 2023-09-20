@@ -59,7 +59,7 @@ def send_invitation_email(party, test_only=False, recipients=None):
             msg.attach(msg_img)
 
     print(f"sending invitation to {party.name}")
-    if test_only is True:
+    if test_only is False:
         print("SENDING")
         msg.send()
 
